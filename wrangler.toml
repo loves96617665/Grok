@@ -38,11 +38,12 @@ database_id = "42a97679-f232-4802-9077-1b239c35aabb"
 
 # 開發環境
 [env.dev]
-name = "grok-mirror-dev"
+name = "grok-dev"
 workers_dev = true
 
 [env.dev.vars]
 ENVIRONMENT = "development"
+
 
 
 
