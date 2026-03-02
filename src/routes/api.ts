@@ -40,7 +40,7 @@ apiRouter.post('/batch-add-grok-token', adminAuth, async (c) => {
         ).bind(sso_token, 'active', now, now).run();
 
         // 同時存儲到 KV 以加快查詢
-        await c.env.TOKENS.put(sso_token, JSON.stringify({
+        await c.env.KV.put(`token:${sso_token}`, JSON.stringify({
           status: 'active',
           created_at: now,
         }));
@@ -138,7 +138,7 @@ apiRouter.delete('/token/:id', adminAuth, async (c) => {
     ).bind(id).run();
 
     // 從 KV 刪除
-    await c.env.TOKENS.delete(token.sso_token);
+    await c.env.KV.delete(`token:${token.sso_token}`);
 
     return c.json({
       success: true,

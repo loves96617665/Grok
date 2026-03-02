@@ -11,7 +11,7 @@ export async function rateLimiter(c: Context<{ Bindings: Env }>, next: Next) {
     const key = `ratelimit:${identifier}`;
 
     // 從 KV 獲取當前計數
-    const data = await c.env.CACHE.get(key);
+    const data = await c.env.KV.get(`ratelimit:${key}`);
     
     let count = 0;
     let resetTime = Date.now() + 86400000; // 24 小時後重置
@@ -42,7 +42,7 @@ export async function rateLimiter(c: Context<{ Bindings: Env }>, next: Next) {
 
     // 增加計數
     count++;
-    await c.env.CACHE.put(key, JSON.stringify({
+    await c.env.KV.put(`ratelimit:${key}`, JSON.stringify({
       count,
       resetTime,
     }), {

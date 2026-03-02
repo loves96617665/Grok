@@ -45,25 +45,10 @@ echo ""
 # 創建 KV 命名空間
 echo "📝 創建 KV 命名空間..."
 
-# Tokens KV
-TOKENS_KV_ID=$(npx wrangler kv:namespace create "TOKENS" --preview false 2>&1 | grep -oP 'id = "\K[^"]+' || echo "")
-if [ -n "$TOKENS_KV_ID" ]; then
-    echo "✅ TOKENS KV 已創建: $TOKENS_KV_ID"
-    sed -i "s/your_kv_namespace_id/$TOKENS_KV_ID/" wrangler.toml
-fi
-
-# Sessions KV
-SESSIONS_KV_ID=$(npx wrangler kv:namespace create "SESSIONS" --preview false 2>&1 | grep -oP 'id = "\K[^"]+' || echo "")
-if [ -n "$SESSIONS_KV_ID" ]; then
-    echo "✅ SESSIONS KV 已創建: $SESSIONS_KV_ID"
-    sed -i "s/your_kv_namespace_id_2/$SESSIONS_KV_ID/" wrangler.toml
-fi
-
-# Cache KV
-CACHE_KV_ID=$(npx wrangler kv:namespace create "CACHE" --preview false 2>&1 | grep -oP 'id = "\K[^"]+' || echo "")
-if [ -n "$CACHE_KV_ID" ]; then
-    echo "✅ CACHE KV 已創建: $CACHE_KV_ID"
-    sed -i "s/your_kv_namespace_id_3/$CACHE_KV_ID/" wrangler.toml
+KV_ID=$(npx wrangler kv:namespace create "KV" --preview false 2>&1 | grep -oP 'id = "\K[^"]+' || echo "")
+if [ -n "$KV_ID" ]; then
+    echo "✅ KV 命名空間已創建: $KV_ID"
+    sed -i "s/your_kv_namespace_id/$KV_ID/" wrangler.toml
 fi
 
 echo ""
@@ -79,17 +64,6 @@ fi
 echo ""
 
 # 初始化數據庫
-echo "📝 初始化數據庫..."
-npx wrangler d1 execute grok-mirror-db --file=./schema.sql
-echo "✅ 數據庫初始化完成"
-echo ""
-
-# 創建 R2 存儲桶
-echo "📝 創建 R2 存儲桶..."
-npx wrangler r2 bucket create grok-mirror-assets || echo "⚠️  R2 存儲桶可能已存在"
-echo ""
-
-# 設置密鑰
 echo "🔐 設置密鑰..."
 echo "請輸入管理員密碼:"
 npx wrangler secret put ADMIN_PASSWORD

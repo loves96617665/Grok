@@ -19,15 +19,10 @@ export interface Env {
   API_HATD: string;
   
   // KV 命名空間
-  TOKENS: KVNamespace;
-  SESSIONS: KVNamespace;
-  CACHE: KVNamespace;
+  KV: KVNamespace;
   
   // D1 數據庫
   DB: D1Database;
-  
-  // R2 存儲桶
-  ASSETS: R2Bucket;
 }
 
 const app = new Hono<{ Bindings: Env }>();

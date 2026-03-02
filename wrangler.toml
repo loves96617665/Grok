@@ -18,30 +18,17 @@ API_HATD = "true"
 # wrangler secret put AUTHORIZATION
 # wrangler secret put GROK_API_KEY
 
-# KV 命名空間（Token 存儲）
+# KV 命名空間
 [[kv_namespaces]]
-binding = "TOKENS"
-id = "4aa59f73db4340ecb3c2814c6077003c"
-preview_id = "4aa59f73db4340ecb3c2814c6077003c"
-
-# KV 命名空間（會話存儲）
-[[kv_namespaces]]
-binding = "SESSIONS"
-id = "8f23ff01997f43bf994865a4b00d0b13"
-preview_id = "8f23ff01997f43bf994865a4b00d0b13"
-
-# KV 命名空間（緩存）
-[[kv_namespaces]]
-binding = "CACHE"
-id = "14e26538d07c4261ad7fe3d4c820c2dd"
-preview_id = "14e26538d07c4261ad7fe3d4c820c2dd"
+binding = "KV"
+id = "your_kv_namespace_id"
+preview_id = "your_preview_kv_namespace_id"
 
 # D1 數據庫
 [[d1_databases]]
 binding = "DB"
 database_name = "grok-mirror-db"
-database_id = "42a97679-f232-4802-9077-1b239c35aabb"
-
+database_id = "your_database_id"
 
 # Durable Objects（用於 WebSocket 支持，可選）
 # [[durable_objects.bindings]]
@@ -60,6 +47,3 @@ workers_dev = true
 
 [env.dev.vars]
 ENVIRONMENT = "development"
-
-
-

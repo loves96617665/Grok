@@ -19,7 +19,6 @@
 - 框架：Hono
 - 數據庫：Cloudflare D1 (SQLite)
 - KV 存儲：Cloudflare KV
-- 對象存儲：Cloudflare R2
 
 ## 快速開始
 
@@ -39,15 +38,10 @@ npx wrangler login
 
 ```bash
 # 創建 KV 命名空間
-npx wrangler kv:namespace create "TOKENS"
-npx wrangler kv:namespace create "SESSIONS"
-npx wrangler kv:namespace create "CACHE"
+npx wrangler kv:namespace create "KV"
 
 # 創建 D1 數據庫
 npx wrangler d1 create grok-mirror-db
-
-# 創建 R2 存儲桶
-npx wrangler r2 bucket create grok-mirror-assets
 ```
 
 ### 4. 更新配置
@@ -201,14 +195,12 @@ npx wrangler tail
 - KV 讀取：100,000 次
 - KV 寫入：1,000 次
 - D1 讀取：500 萬行
-- R2 存儲：10 GB
 
 ### 付費價格（超出免費額度）
 
 - Workers：$5/月（10M 請求）
 - KV：$0.50/月（1M 讀取）
 - D1：$5/月（2500 萬行讀取）
-- R2：$0.015/GB/月
 
 ## 限制
 
@@ -271,7 +263,6 @@ npx wrangler deploy
 - [Hono 框架文檔](https://hono.dev/)
 - [D1 數據庫文檔](https://developers.cloudflare.com/d1/)
 - [KV 存儲文檔](https://developers.cloudflare.com/kv/)
-- [R2 存儲文檔](https://developers.cloudflare.com/r2/)
 
 ## 許可證
 

@@ -37,7 +37,7 @@ export async function authMiddleware(c: Context<{ Bindings: Env }>, next: Next) 
     }
 
     // 檢查是否是 SSO Token
-    const tokenData = await c.env.TOKENS.get(token);
+    const tokenData = await c.env.KV.get(`token:${token}`);
     
     if (!tokenData) {
       // 從數據庫查詢

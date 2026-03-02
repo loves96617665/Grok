@@ -56,7 +56,7 @@ authRouter.post('/login', async (c) => {
     ).bind(sessionId, user.id, expiresAt).run();
 
     // 存儲到 KV
-    await c.env.SESSIONS.put(sessionId, JSON.stringify({
+    await c.env.KV.put(`session:${sessionId}`, JSON.stringify({
       user_id: user.id,
       user_name: user.user_name,
       email_md5: user.email_md5,
@@ -126,7 +126,7 @@ authRouter.post('/login-v2', async (c) => {
     ).bind(sessionId, user.id, expiresAt).run();
 
     // 存儲到 KV
-    await c.env.SESSIONS.put(sessionId, JSON.stringify({
+    await c.env.KV.put(`session:${sessionId}`, JSON.stringify({
       user_id: user.id,
       user_name: user.user_name,
       sso_token: sso_token,
@@ -159,7 +159,7 @@ authRouter.post('/logout', async (c) => {
 
     if (sessionId) {
       // 從 KV 刪除
-      await c.env.SESSIONS.delete(sessionId);
+      await c.env.KV.delete(`session:${sessionId}`);
 
       // 從數據庫刪除
       await c.env.DB.prepare(
@@ -193,7 +193,7 @@ authRouter.get('/verify', async (c) => {
     }
 
     // 從 KV 獲取會話
-    const sessionData = await c.env.SESSIONS.get(sessionId);
+    const sessionData = await c.env.KV.get(`session:${sessionId}`);
 
     if (!sessionData) {
       return c.json({
