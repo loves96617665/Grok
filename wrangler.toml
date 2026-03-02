@@ -1,0 +1,67 @@
+name = "grok-mirror"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers 配置
+workers_dev = true
+route = { pattern = "grok.yourdomain.com/*", zone_name = "yourdomain.com" }
+
+# 環境變量
+[vars]
+ENVIRONMENT = "production"
+ENABLE_MIRROR_API = "true"
+API_HATD = "true"
+
+# 密鑰（使用 wrangler secret put 設置）
+# wrangler secret put ADMIN_PASSWORD
+# wrangler secret put AUTHORIZATION
+# wrangler secret put GROK_API_KEY
+
+# KV 命名空間（Token 存儲）
+[[kv_namespaces]]
+binding = "TOKENS"
+id = "your_kv_namespace_id"
+preview_id = "your_preview_kv_namespace_id"
+
+# KV 命名空間（會話存儲）
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "your_kv_namespace_id_2"
+preview_id = "your_preview_kv_namespace_id_2"
+
+# KV 命名空間（緩存）
+[[kv_namespaces]]
+binding = "CACHE"
+id = "your_kv_namespace_id_3"
+preview_id = "your_preview_kv_namespace_id_3"
+
+# D1 數據庫
+[[d1_databases]]
+binding = "DB"
+database_name = "grok-mirror-db"
+database_id = "your_database_id"
+
+# R2 存儲桶（用於圖片等靜態資源）
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "grok-mirror-assets"
+preview_bucket_name = "grok-mirror-assets-preview"
+
+# Durable Objects（用於 WebSocket 支持，可選）
+# [[durable_objects.bindings]]
+# name = "CHAT_ROOM"
+# class_name = "ChatRoom"
+# script_name = "grok-mirror"
+
+# 速率限制
+[limits]
+cpu_ms = 50
+
+# 開發環境
+[env.dev]
+name = "grok-mirror-dev"
+workers_dev = true
+
+[env.dev.vars]
+ENVIRONMENT = "development"

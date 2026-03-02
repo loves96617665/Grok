@@ -1,0 +1,21 @@
+{
+  "name": "grok-mirror-workers",
+  "version": "1.0.0",
+  "description": "Grok Mirror on Cloudflare Workers",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "db:init": "wrangler d1 execute grok-mirror-db --file=./schema.sql",
+    "db:migrate": "wrangler d1 migrations apply grok-mirror-db"
+  },
+  "dependencies": {
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240000.0",
+    "wrangler": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}
