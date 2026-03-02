@@ -5,7 +5,7 @@ compatibility_flags = ["nodejs_compat"]
 
 # Workers 配置
 workers_dev = true
-route = { pattern = "grok.yourdomain.com/*", zone_name = "yourdomain.com" }
+route = { pattern = "https://grok.workers.dev*", zone_name = "yourdomain.com" }
 
 # 環境變量
 [vars]
@@ -43,6 +43,7 @@ workers_dev = true
 
 [env.dev.vars]
 ENVIRONMENT = "development"
+
 
 
 
