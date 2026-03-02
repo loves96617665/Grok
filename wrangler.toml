@@ -1,22 +1,16 @@
-name = "grok-mirror"
+name = "grok"
 main = "src/index.ts"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
 
 # Workers 配置
 workers_dev = true
-route = { pattern = "https://grok.workers.dev*", zone_name = "yourdomain.com" }
 
 # 環境變量
 [vars]
 ENVIRONMENT = "production"
 ENABLE_MIRROR_API = "true"
 API_HATD = "true"
-
-# 密鑰（使用 wrangler secret put 設置）
-# wrangler secret put ADMIN_PASSWORD
-# wrangler secret put AUTHORIZATION
-# wrangler secret put GROK_API_KEY
 
 # KV 命名空間
 [[kv_namespaces]]
@@ -29,13 +23,6 @@ binding = "DB"
 database_name = "grok-mirror-db"
 database_id = "42a97679-f232-4802-9077-1b239c35aabb"
 
-# Durable Objects（用於 WebSocket 支持，可選）
-# [[durable_objects.bindings]]
-# name = "CHAT_ROOM"
-# class_name = "ChatRoom"
-# script_name = "grok-mirror"
-
-
 # 開發環境
 [env.dev]
 name = "grok-dev"
@@ -43,8 +30,3 @@ workers_dev = true
 
 [env.dev.vars]
 ENVIRONMENT = "development"
-
-
-
-
-
