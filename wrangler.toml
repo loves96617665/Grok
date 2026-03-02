@@ -22,7 +22,7 @@ API_HATD = "true"
 [[kv_namespaces]]
 binding = "TOKENS"
 id = "4aa59f73db4340ecb3c2814c6077003c"
-preview_id = "4aa59f73db4340ecb3c2814c6077003c"
+preview_id = ""
 
 # KV 命名空間（會話存儲）
 [[kv_namespaces]]
@@ -65,4 +65,5 @@ workers_dev = true
 
 [env.dev.vars]
 ENVIRONMENT = "development"
+
 
