@@ -22,7 +22,6 @@ API_HATD = "true"
 [[kv_namespaces]]
 binding = "KV"
 id = "2bf402fcde154033b7d7169ed6cfad07"
-preview_id = "2bf402fcde154033b7d7169ed6cfad07"
 
 # D1 數據庫
 [[d1_databases]]
@@ -47,4 +46,5 @@ workers_dev = true
 
 [env.dev.vars]
 ENVIRONMENT = "development"
+
 
