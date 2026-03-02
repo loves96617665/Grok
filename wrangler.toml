@@ -35,9 +35,6 @@ database_id = "42a97679-f232-4802-9077-1b239c35aabb"
 # class_name = "ChatRoom"
 # script_name = "grok-mirror"
 
-# 速率限制
-[limits]
-cpu_ms = 50
 
 # 開發環境
 [env.dev]
@@ -46,5 +43,6 @@ workers_dev = true
 
 [env.dev.vars]
 ENVIRONMENT = "development"
+
 
 
