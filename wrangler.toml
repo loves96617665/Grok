@@ -21,14 +21,14 @@ API_HATD = "true"
 # KV 命名空間
 [[kv_namespaces]]
 binding = "KV"
-id = "your_kv_namespace_id"
-preview_id = "your_preview_kv_namespace_id"
+id = "2bf402fcde154033b7d7169ed6cfad07"
+preview_id = "2bf402fcde154033b7d7169ed6cfad07"
 
 # D1 數據庫
 [[d1_databases]]
 binding = "DB"
 database_name = "grok-mirror-db"
-database_id = "your_database_id"
+database_id = "42a97679-f232-4802-9077-1b239c35aabb"
 
 # Durable Objects（用於 WebSocket 支持，可選）
 # [[durable_objects.bindings]]
@@ -47,3 +47,4 @@ workers_dev = true
 
 [env.dev.vars]
 ENVIRONMENT = "development"
+
